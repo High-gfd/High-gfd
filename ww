@@ -1,0 +1,51 @@
+https://github.com/High-gfd/High-gfd.git
+struct TimerToggle: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        AppIntentControlConfiguration(
+            kind: "com.apple.Productivity.TimerToggle",
+            provider: ConfigurableTimerValueProvider()
+        ) { timerState in
+            ControlWidgetToggle(
+                timerState.timer.name,
+                isOn: timerState.isRunning,
+                action: ToggleTimerIntent(timer: timerState.timer)
+            ) { isOn in
+                Label(isOn ? "Running" : "Stopped",
+                      systemImage: isOn
+                      ? "hourglass"
+                      : "hourglass.bottomhalf.filled")
+                .controlWidgetActionHint(isOn ?
+                                         "Start" : "Stop")
+            }
+            .tint(.purple)
+        }
+ct SomeControl: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        AppIntentControlConfiguration(
+            // ...
+        )
+        .promptsForUserConfiguration()
+    }
+}
+    }
+}
+struct TimerToggle: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        AppIntentControlConfiguration(
+            kind: "com.apple.Productivity.TimerToggle",
+            provider: ConfigurableTimerValueProvider()
+        ) { timerState in
+            ControlWidgetToggle(
+                timerState.timer.name,
+                isOn: timerState.isRunning,
+                action: ToggleTimerIntent(timer: timerState.timer)
+            ) { isOn in
+                Label(isOn ? "Running" : "Stopped",
+                      systemImage: isOn
+                      ? "hourglass"
+                      : "hourglass.bottomhalf.filled")
+            }
+            .tint(.purple)
+        }
+    }
+}
